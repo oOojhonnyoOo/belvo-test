@@ -1,0 +1,29 @@
+version: '3'
+services:
+  belvo_database:
+    image: mysql:8
+    container_name: belvo_database
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=belvo_database
+      - MYSQL_USER=belvo
+      - MYSQL_PASSWORD=belvo
+    volumes:
+      - ./docker/database:/var/lib/mysql
+    ports:
+      - "3307:3306"
+
+  belvo_service:
+    build: .
+    container_name: belvo_service
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./src:/src
+    ports:
+      - "8000:8000"
+    depends_on:
+      - belvo_database
+
+volumes:
+  dbdata:
+    driver: local
