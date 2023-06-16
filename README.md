@@ -62,5 +62,3 @@ If you had difficulty or didn't want to use postman to test the application, no 
 - API Documentation (https://documenter.getpostman.com/view/5439843/2s93m7W265)
 
 
-
-
